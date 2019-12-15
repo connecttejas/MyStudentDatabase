@@ -1,6 +1,7 @@
 package com.example.mystudentdatabase;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -8,6 +9,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
+
+import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.ArrayList;
 
@@ -16,9 +20,9 @@ public class MainActivity extends AppCompatActivity {
 
     DatabaseHelper myDb;
 
-    EditText id;
-    EditText name;
-    EditText city;
+    TextInputLayout id;
+    TextInputLayout name;
+    TextInputLayout city;
 
     ListView listViewMain;
     Button addData;
@@ -31,13 +35,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        id = findViewById(R.id.et_Id);
-        name = findViewById(R.id.et_Name);
-        city = findViewById(R.id.et_City);
-        addData = findViewById(R.id.btn_Add);
-        updateData = findViewById(R.id.btn_Update);
-        listViewMain = findViewById(R.id.listView);
-        deleteData  = findViewById(R.id.btn_Delete);
+        id = findViewById(R.id.textInputLayout_ID);
+        name = findViewById(R.id.textInput_Name);
+        city = findViewById(R.id.textInputLayout_City);
+        addData = findViewById(R.id.button_Add);
+        updateData = findViewById(R.id.button_Update);
+        listViewMain = findViewById(R.id.recyclerView);
+        deleteData  = findViewById(R.id.button_Delete);
 
         myDb = new DatabaseHelper(this);
 
@@ -46,9 +50,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //Student mstudent    =
-                myDb.addData(new Student(name.getText().toString(), city.getText().toString()));
+                myDb.addData(new Student(name.getEditText().getText().toString(), city.getEditText().getText().toString()));
 
                 showData();
+                Toast.makeText(getApplicationContext(),name.getEditText().getText().toString()+ " ADDED",Toast.LENGTH_LONG).show();
 
 
             }
@@ -57,8 +62,9 @@ public class MainActivity extends AppCompatActivity {
         updateData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                myDb.updateData(id.getText().toString(),name.getText().toString(),city.getText().toString());
+                myDb.updateData(id.getEditText().getText().toString(),name.getEditText().getText().toString(),city.getEditText().getText().toString());
                 showData();
+                Toast.makeText(getApplicationContext(),"ID no." +id.getEditText().getText().toString()+ " UPDATED",Toast.LENGTH_LONG).show();
             }
         });
 
@@ -66,10 +72,11 @@ public class MainActivity extends AppCompatActivity {
         deleteData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String delId    =   id.getText().toString();
+                String delId    =   id.getEditText().getText().toString();
 
                 myDb.deleteData(delId);
                 showData();
+                Toast.makeText(getApplicationContext(),"ID no." +id.getEditText().getText().toString()+ " DELETED",Toast.LENGTH_LONG).show();
             }
         });
 

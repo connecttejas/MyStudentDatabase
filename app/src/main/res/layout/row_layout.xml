@@ -9,21 +9,28 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:text="Id"
-        android:textSize="30sp" />
+        android:textSize="30sp"
+        android:textColor="#34bcc0"
+        android:textStyle="bold"
+        />
 
     <TextView
         android:id="@+id/textViewName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_weight="3"
         android:text="Name"
-        android:textSize="30sp" />
+        android:textColor="#34bcc0"
+        android:textSize="25sp"
+        android:gravity="left"
+        android:textAlignment="gravity"/>
 
     <TextView
         android:id="@+id/textViewCity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_weight="2"
         android:text="City"
-        android:textSize="30sp" />
+        android:textColor="#34bcc0"
+        android:textSize="25sp" />
 </LinearLayout>
